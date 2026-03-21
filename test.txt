@@ -1,0 +1,3 @@
+http://localhost:5000/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AfrIepAdkRMbKG3K14aGW2dPHpzRxlF3HveZY3KUh_Z-MCv2y_1Mfyx2QQLlVfBqNg8lYQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent
+
+https://console.cloud.google.com/apis/credentials?project=emailify5991
