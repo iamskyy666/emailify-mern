@@ -19,7 +19,7 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       console.log(`🟡 accessToken: ${accessToken}`);
       console.log(`🔵 refreshToken: ${refreshToken}`);
-      console.log(`👤 profile: ${profile}`);
+      console.log("👤 profile:", profile);
       //console.log(`✅ done: ${done}`);
     },
   ),
