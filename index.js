@@ -1,7 +1,10 @@
-import "./config/dotenv.js"
+import "./config/dotenv.js";
 import express from "express";
 import "./services/passport.services.js";
 import authRoutes from "./routes/auth.routes.js";
+import mongoose from "mongoose";
+
+mongoose.connect(process.env.MONGO_URI);
 
 const app = express();
 
