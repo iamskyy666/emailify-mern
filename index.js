@@ -3,6 +3,7 @@ import express from "express";
 import "./services/passport.services.js";
 import authRoutes from "./routes/auth.routes.js";
 import mongoose from "mongoose";
+import UserModel from "./models/user.model.js";
 
 mongoose.connect(process.env.MONGO_URI);
 
