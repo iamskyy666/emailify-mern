@@ -6,7 +6,7 @@ const UserModel = model("users");
 
 // Encoding users
 passport.serializeUser((userModel, done) => {
-  done(null, user.id);
+  done(null, userModel.id);
 });
 
 // Deserialize User
