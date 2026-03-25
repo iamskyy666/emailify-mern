@@ -4,6 +4,18 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 const UserModel = model("users");
 
+// Encoding users
+passport.serializeUser((userModel, done) => {
+  done(null, user.id);
+});
+
+// Deserialize User
+passport.deserializeUser((id, done) => {
+  UserModel.findById(id).then((user) => {
+    done(null, user); // done -> always takes an error obj. -> here -> null
+  });
+});
+
 passport.use(
   new GoogleStrategy(
     {
