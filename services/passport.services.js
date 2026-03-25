@@ -1,6 +1,8 @@
+import { model } from "mongoose";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-// import { googleClientID, googleClientSecret } from "../config/keys";
+
+const UserModel = model("users");
 
 passport.use(
   new GoogleStrategy(
@@ -10,10 +12,17 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(`🟡 accessToken: ${accessToken}`);
-      console.log(`🔵 refreshToken: ${refreshToken}`);
-      console.log("👤 profile:", profile);
-      //console.log(`✅ done: ${done}`);
+      UserModel.findOne({ googleId: profile.id }).then((existingUser) => {
+        if (existingUser) {
+          // we already have a record with the given profile-id
+          done(null, existingUser); // null -> no errors
+        } else {
+          // we don't have any record with the given profile-id
+          new UserModel({ googleId: profile.id })
+            .save()
+            .then((user) => done(null, user));
+        }
+      });
     },
   ),
 ); // instance of Google password-strategy

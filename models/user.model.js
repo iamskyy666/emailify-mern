@@ -4,5 +4,4 @@ const userSchema = new Schema({
   googleId: String,
 });
 
-const UserModel = model("users", userSchema);
-export default UserModel;
+model("users", userSchema);
