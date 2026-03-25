@@ -8,7 +8,35 @@ export default function authRoutes(app) {
       scope: ["profile", "email"],
     }),
   );
-  app.get("/auth/google/callback", passport.authenticate("google"));
+
+  //! OLDER VERSION
+  // app.get("/auth/google/callback", passport.authenticate("google"));
+
+  //! LATEST VERSION
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google", { failureRedirect: "/" }),
+    (_, res) => {
+      res.redirect("/api/current_user");
+    },
+  );
+
+  //! OLDER VERSION (passport.js)
+  // app.get("/api/logout", (req, res) => {
+  //   req.logout();
+  //   res.send(req.user)
+  // });
+
+  //! LATEST VERSION (passport.js)
+  app.get("/api/logout", (req, res, next) => {
+    req.logout(function (err) {
+      if (err) return next(err);
+
+      req.session.destroy(() => {
+        res.send("Logged out successfully ✅");
+      });
+    });
+  });
 
   // Testing Auth. 🧪
   app.get("/api/current_user", (req, res) => {
