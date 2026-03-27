@@ -40,6 +40,7 @@ export default function authRoutes(app) {
 
   // Testing Auth. 🧪
   app.get("/api/current_user", (req, res) => {
+    // res.send(req.session);
     res.send(req.user);
   });
 }
